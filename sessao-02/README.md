@@ -1,5 +1,5 @@
 # CVTECH Lda. Estrutura Documental
-Responsável: O Teu Nome Completo
+Responsável: Kleidmilson Rui Dos Santos Alves
 Data: 11/10/2026
 
 ## Departamentos
