@@ -1,0 +1,26 @@
+Desafio 1: Pesquisar Informação com grep (20 min)Como funciona o grep?O grep (Global Regular Expression Print) varre ficheiros linha a linha e imprime apenas as linhas que contêm o termo procurado.  
+  -i: ignora maiúsculas/minúsculas (case-insensitive).  
+  -n: mostra o número da linha no ficheiro. 
+  -c: conta apenas quantas linhas correspondem.   
+  -v: inverte a pesquisa (mostra tudo o que NÃO contém o termo). 
+  -r: pesquisa recursiva (entra dentro de todas as pastas).  
+
+Desafio 2: Pipes, Contagens e Rankings 
+Como funcionam os Pipes (|)?
+O pipe (|) apanha o resultado (saída padrão) do comando do lado esquerdo e injeta-o diretamente como entrada do comando do lado direito. Permite encadear ferramentas simples para realizar análises complexas.
+
+ Respostas às Questões de Análise: Por que o uniq -c precisa de um sort antes? O uniq só compara linhas adjacentes (seguidas). Se o mesmo IP aparecer na linha 1 e na linha 10 sem estarem agrupados, o uniq conta-os separadamente em vez de juntar o total.  
+
+ O que sugere o padrão do IP 203.0.113.7? Sugere um ataque de força bruta (Brute Force Attack) ou Password Spraying focado em contas privilegiadas (root). O administrador deve bloquear o IP no firewall (ex: via iptables ou ufw) e implementar ferramentas como o fail2ban. 
+
+  Diferença entre grep -c e grep ... | wc -l: O grep -c conta o número de linhas do ficheiro que contêm o termo. Se uma única linha contiver o termo duas vezes, grep -c conta apenas 1. Em termos gerais dão o mesmo número de linhas, mas encadear com wc -l permite filtrar dados processados no meio do pipeline.
+
+Desafio 3: Redirecionamento e Relatório de Auditoria (25 min)Como funciona o Redirecionamento?
+Por padrão, os comandos enviam a sua saída para o ecrã.   > (Sobrescrever): redireciona a saída para um ficheiro, eliminando tudo o que lá estava antes.   >> (Anexar): adiciona o novo texto no fim do ficheiro existente.   
+
+2>/dev/null: redireciona o canal de erros (canal 2) para o "buraco negro" do Linux, silenciando mensagens de erro desnecessárias. 
+
+Respostas às Questões Finais:   O que aconteceria se a última linha usasse > em vez de >>? Todo o conteúdo anterior do relatório (cabeçalho, estrutura, erros e credenciais) seria apagado e o ficheiro ficaria apenas com o ranking de IPs.   
+
+Comando para anexar a listagem do ls -la ~/empresa/rh:Bashls -la ~/empresa/rh >> relatorio_auditoria.txt
+Por que o 2>/dev/null pode ser perigoso? Porque esconde eventuais erros críticos de sistema (como permissões negadas ou falta de espaço em disco), fazendo parecer que um comando foi bem-sucedido quando na verdade falhou por razões imprevistas. 
