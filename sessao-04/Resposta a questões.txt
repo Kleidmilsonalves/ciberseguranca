@@ -1,0 +1,28 @@
+Respostas às Questões de Reflexão:   
+
+Três diferenças entre alice e estagiario:
+
+- alice tem diretório pessoal /home/alice (opção -m); estagiario não tem pasta física criada em /home.  
+
+- alice utiliza a shell /bin/bash (opção -s); estagiario ficou com a shell padrão restrita /bin/sh. 
+
+- alice possui o nome completo no campo GECOS (opção -c); estagiario não tem descrição.  
+
+ Por que o campo da password mostra x em /etc/passwd? Por motivos de segurança. Historicamente as passwords ficavam no /etc/passwd, que precisa de ser lido por qualquer utilizador.O x indica que os hashes cifrados foram movidos para o ficheiro /etc/shadow. 
+
+  O que se vê no ficheiro /etc/shadow? Vê-se o hash cifrado da palavra-passe. O ficheiro só pode ser lido pelo root para impedir ataques de cracking de passwords por utilizadores não autorizados.
+
+Respostas às Questões de Análise:   
+
+  Efeito de sudo usermod -G sudo bruno (sem -a): Teria removido o Bruno do seu grupo de departamento (ti), mantendo-o apenas no grupo sudo. 
+
+  Diferença entre groups bruno fora e dentro da sessão: O comando groups executado numa sessão já aberta lê os tokens de acesso gerados no login. Alterações efetuadas após o login só têm efeito na sessão do utilizador após um novo login/autenticação. 
+
+  Riscos de dar sudo a todos os colaboradores: Viola o Princípio do Menor Privilégio, aumenta a superfície de ataque, permite a alteração/remoção acidental de ficheiros do sistema e impede a responsabilização auditável em incidentes de segurança.  
+
+ Respostas às Questões Finais:  
+ Por que pode aparecer outra conta no grupo sudo além do Bruno? No WSL2, aparece a conta do formando/administrador criada durante a instalação do Linux, que tem privilégios de sudo por padrão para gerir o sistema. 
+
+  Por que confirmar com id antes de userdel -r? Para evitar apagar acidentalmente o utilizador errado por erro de digitação, prevenindo a perda irreversível de dados pessoais e permissões.   
+
+Quem terá acesso a uma pasta que só o grupo rh pode ler na Sessão 5? Apenas a utilizadora alice (e o utilizador root/membros com privilégios de administração).  
