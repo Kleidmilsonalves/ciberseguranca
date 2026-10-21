@@ -1,0 +1,27 @@
+ Respostas às Questões de Reflexão:
+
+1- Conversão para octal:  
+
+ rwxr-x--- = 750 (7 para dono,5 para grupo,0 para outros) ;
+ rw-rw-r-- = 664 (6 para dono, 6 para grupo, 4 para outros);
+ r--r--r-- = 444 (4 para dono, 4 para grupo, 4 para outros).
+
+  2- Com as permissões iniciais (755):   Listar a pasta rh? Sim, porque 755 concede permissão de leitura (r) e execução (x) aos "outros" (o).   Criar ficheiros na pasta rh? Não, porque a permissão de escrita (w) na pasta pertence apenas ao dono root.  
+
+	3- Diferença entre r e x numa pasta:   r (read): permite listar os nomes dos ficheiros contidos na pasta (ex: usar ls).   x (execute): permite atravessar/entrar na pasta (ex: usar cd) e aceder aos metadados/conteúdos dos ficheiros no seu interior. 
+
+Respostas às Questões de Análise:
+
+Por que o ficheiro da Alice ficou com grupo alice e não rh? Porque por defeito no Linux, quando um utilizador cria um ficheiro, este herda o seu grupo primário (no caso da Alice, o seu grupo pessoal alice). Se permanecesse em 640 com grupo alice, outro colega do departamento de RH não conseguiria ler o ficheiro.
+
+   Comando simbólico equivalente a chmod 640 partindo de rw-rw-r--: chmod g-w,o-r (remove escrita ao grupo e remove leitura aos outros).  
+
+ Por que a Carla consegue listar a pasta pública mas não criar ficheiros lá? Porque a pasta /srv/cvtech/publico possui permissão 755 (rwxr-xr-x). Para a Carla ("outros"), há permissão de leitura (r) e travessia (x), mas não de escrita (w), permitindo ver os ficheiros mas impedindo alterações. 
+
+Respostas às Questões Finais:  
+
+ Vantagem de bloquear com passwd -l em vez de apagar com userdel: Preserva os ficheiros do utilizador, histórico de auditoria, permissões e pertença a grupos no sistema, permitindo reativar a conta rapidamente sem reconstruir a configuração do utilizador.  
+
+ O que acontece se a Carla não iniciar sessão durante 30 dias após expiração? A conta entra no estado Inactive (inativa) e é completamente bloqueada pelo sistema, exigindo intervenção do administrador para reativar.   
+
+Por que o comando de listagem de /srv/cvtech/rh precisa de sudo e o de /srv/cvtech não? Porque a pasta /srv/cvtech tem permissão 755 (leitura pública para todos), enquanto a pasta /srv/cvtech/rh tem permissão 770 (drwxrwx---), onde apenas o utilizador root ou membros do grupo rh têm acesso.    
