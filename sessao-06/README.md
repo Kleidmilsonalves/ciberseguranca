@@ -1,7 +1,7 @@
 # CVTECH Lda. - Processos e Monitorização de Sistemas (Diagnóstico Sob Pressão)
 
-**Responsável:** <Kleidmilson Rui Dos Santos Alves>  
-**Data:** <25/10/2026>  
+**Responsável:** Kleidmilson Rui Dos Santos Alves  
+**Data:** 25/10/2026 
 **Módulo:** Segurança Linux & Ops (Sessão 6)  
 
 ---
