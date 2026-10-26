@@ -1,0 +1,27 @@
+== Missao 1 ==
+C1-8B66C5
+find arquivo/ -name .* -type f
+
+== Missao 2 ==
+Total linhas: 301 (comando: wc -l logs/servidor.log ou wc -l ~/desafio_final/logs/servidor.log)
+Linhas ERRO: 42 (comando: grep -c 'ERRO' logs/servidor.log)
+Comando CRITICO: grep 'CRITICO' logs/servidor.log
+C2-6FEBBB
+
+== Missao 3 ==
+C3-7133C8
+Comando: chmod 640 docs/relatorio_rh.txt
+
+== Missao 4 ==
+Comando: sudo groupadd auditores && sudo useradd -m -s /bin/bash -G auditores auditor
+Output id: uid=1001(auditor) gid=1002(auditor) groups=1002(auditor),1001(auditores)
+
+== Missao 5 ==
+C5-7D6FED
+Processo:Nome: kalve, PID: 758, CPU: 99.9% 
+Comando: kill 758
+
+== Missão 6 ==
+C6-F3589F
+Comandos: openssl enc -d -aes-256-cbc -pbkdf2 -in cofre/cofre.tar.gz.enc -out cofre/cofre.tar.gz && mkdir -p cofre/restaurado && tar -xzf cofre/cofre.tar.gz -C cofre/restaurado/
+Nota: Password de cifra obtida na Missao 3
