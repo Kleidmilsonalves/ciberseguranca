@@ -1,0 +1,25 @@
+Respostas às Questões de Reflexão:   
+
+ Por que é que ficheiros de texto se comprimem tão bem? Ficheiros de texto contêm muitos caracteres, espaços e estruturas de código repetidos. O algoritmo gzip substitui esses padrões repetidos por referências curtas na memória, reduzindo substancialmente o tamanho final.
+
+ Por que é que a letra f tem de ser a última no grupo de opções? Porque a opção -f indica que o argumento seguinte é o nome do ficheiro de destino. Se colocar -cfzv, o tar tentará criar um ficheiro chamado z.  
+
+ Por que usar nomes com data? Permite manter um histórico organizado de múltiplos pontos de restauro (retenção) sem que um novo backup substitua acidentalmente o anterior.
+
+Respostas às Questões de Análise:  
+
+ O que é "cifra simétrica" e que risco traz? Cifra simétrica significa que a mesma chave/palavra-passe é usada tanto para cifrar como para decifrar os dados. O risco é que, se a chave for comprometida ou exposta, qualquer pessoa pode decifrar todos os backups da empresa.
+
+ Por que é que o ficheiro .enc é ligeiramente maior que o .tar.gz? Porque o openssl adiciona ao ficheiro cifrado o cabeçalho de assinatura (Salted__), os bytes do salt aleatório e o padding de blocos exigido pelo algoritmo AES.   
+
+ Por que é que o chmod 600 é obrigatório no .backup_pass? Porque se o ficheiro tivesse permissões abertas (como 644), qualquer utilizador sem privilégios no servidor conseguiria ler a password e comprometer os backups.
+
+Respostas às Questões Finais:   
+
+O que aconteceria se o script não verificasse o ficheiro de password? O comando openssl falharia ao tentar ler a chave, podendo gerar ficheiros corrompidos/vazios ou interromper o script de forma inesperada sem um registo limpo no log.   
+
+Linha de crontab para executar todos os domingos às 23:00: Plaintext0 23 * * 0 $HOME/scripts/backup_cvtech.sh > /dev/null 2>&1
+(Sintaxe: Minuto 0, Hora 23, Dia do mês *, Mês *, Dia da semana 0 para domingo).   
+
+Risco de guardar os backups no mesmo servidor e solução: Se o servidor sofrer uma avaria física de disco, corrupção de sistema operativo ou ataque de Ransomware, tanto os dados originais como os backups serão perdidos.
+Solução: Aplicar a regra de backup 3-2-1, transferindo copias cifradas para armazenamento remoto/Nuvem ou outro servidor de backups secundário via scp ou rsync.    
