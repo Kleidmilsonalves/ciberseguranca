@@ -1,0 +1,21 @@
+Respostas às Questões de Reflexão: 
+  Diferença entre ps aux e top: O ps aux tira um "retrato" estático num dado momento; o top mostra e atualiza os processos dinamicamente em tempo real.  
+ 
+Significado do estado T: Indica que o processo está suspenso/parado (Stopped). Ocorre quando pressionas Ctrl+Z.  
+
+ Diferença entre Ctrl+C e Ctrl+Z: Ctrl+C envia um sinal SIGINT para interromper/destruir a tarefa; Ctrl+Z envia um sinal SIGTSTP para apenas suspender a tarefa e colocá-la em pausa em segundo plano.
+
+Respostas às Questões de Análise:
+Por que tentar sempre kill (SIGTERM) antes de kill -9? O SIGTERM (15) permite ao processo fechar conexões, guardar ficheiros temporários e libertar recursos de forma graciosa. O kill -9 (SIGKILL) é forçado pelo kernel e pode corromper bases de dados ou dados pendentes.
+
+   Diferença no load average: No Passo 2.3 a carga média subiu significativamente (próxima ou acima de 1.0) devido ao ciclo infinito; após o encerramento dos processos, o valor desce gradualmente.   
+
+Se o script voltasse a arrancar sozinho: Indicaria que existe um serviço de automação ou gestor de tarefas (como o cron, um serviço systemd ou um daemon supervisor) a reiniciar o processo automaticamente.
+
+Respostas às Questões Finais:  
+
+ Vantagens do journalctl: Centraliza todos os registos num formato binário estruturado e indexado, permitindo filtragens rápidas por serviço, tempo e prioridade sem necessitar de múltiplos ficheiros em /var/log.   
+
+Informação do log do sudo: Revela a data e hora exatas, o utilizador que invocou o comando, o terminal/TTY e o comando com argumentos executado com privilégios elevados.  
+
+ Importância das horas de início e resolução no relatório: É fundamental para calcular o MTTR (Mean Time To Repair), medir o impacto e indisponibilidade do serviço nos SLAs da empresa e correlacionar incidentes de segurança. 

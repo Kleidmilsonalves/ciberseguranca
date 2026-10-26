@@ -1,0 +1,23 @@
+===== RELATORIO DE INCIDENTE CVTECH Lda. =====
+Data: Fri Oct 23 21:27:32 -01 2026
+
+--- CRONOLOGIA ---
+2026-10-23 20:45:17 INFO monitor iniciado
+2026-10-23 20:45:17 ERRO cvtech-sync não responde — CPU acima de 95%
+2026-10-23 20:53:01 INFO CPU normalizada — cvtech-sync.sh terminado
+Avisos registados: 296
+
+--- PROCESSOS cvtech AINDA ATIVOS ---
+
+--- TOP 5 DE CPU APÓS A INTERVENÇÃO ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          96  0.0  0.0  35252 11776 ?        Ss   17:48   0:07 /usr/lib/systemd/systemd-udevd
+kalve       2698  0.0  0.0  83840  7808 pts/2    Sl+  20:49   0:00 tail -f /home/kalve/incidente/servidor.log
+root          52  0.0  0.1  50416 16256 ?        S<s  17:48   0:02 /usr/lib/systemd/systemd-journald
+root           1  0.0  0.0  24308 14292 ?        Ss   17:48   0:01 /sbin/init
+polkitd      721  0.0  0.0 306436  8064 ?        Ssl  18:05   0:00 /usr/lib/polkit-1/polkitd --no-debug --log-level=notice
+
+--- CONCLUSÃO E RECOMENDAÇÕES ---
+Causa: O processo cvtech-sync.sh entrou em loop infinito consumindo 98% de CPU.
+Ação: O processo culpado foi terminado via SIGTERM (kill) e o processo cvtech-relatorio.sh que ignorava sinais foi terminado via SIGKILL (kill -9).
+Recomendação: Otimizar o código do script de sincronização e implementar limites de recursos via cgroups.
